@@ -3,25 +3,25 @@
 
 #include "MyComplex.hpp"
 
-using namespace std; //CAN'T STOP ME NOW
+using namespace std;
 
 int main(int, char**){
 
-    cout << "hello from lesson_03" << endl;
+    cout << "Program start" << endl;
 
-    MyComplex A, B, C, D;
+    MyComplex a, b, c, d;
 
-    A = MyComplex(3.5, 15.);
-    B = MyComplex(A);
+    a = MyComplex(4.1, 15.);
+    b = MyComplex(a);
 
-    C = A - B;
-    D = A * B;
-    B = A + B;
+    c = a - b;
+    d = a * b;
+    b = a + b;
 
-    cout << "A = " << A.pretty() << endl;
-    cout << "B = " << B.pretty() << endl;
-    cout << "C = " << C.pretty() << endl;
-    cout << "D = " << D.pretty() << endl;
+    cout << "a = " << a.pretty() << endl;
+    cout << "b = " << b.pretty() << endl;
+    cout << "c = " << c.pretty() << endl;
+    cout << "d = " << d.pretty() << endl;
 
     return 0;
 }
