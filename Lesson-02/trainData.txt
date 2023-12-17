@@ -1,18 +1,11 @@
 10
-coal 1111
-wood 2222
-coal 3333
-wood 4444
-wood 5555
-coal 6666
-wood 7777
-wood 8888
-wood 9999
-coal 1010
-
-5
-shit    322
-fuel    525
-not_fuel    132
-dontAsk 17
-lados 69
+coal 1
+wood 2
+coal 3
+wood 4
+wood 5
+coal 6
+wood 7
+wood 8
+wood 9
+coal 10
