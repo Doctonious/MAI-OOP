@@ -15,13 +15,13 @@ P.S. по прикидке на моей машине bubble sort на 1'000'000
 #include <vector>
 #include "bubble.hpp"
 #include <chrono>
-#include <cstdlib> //rand
+#include <cstdlib>
 #include <iterator>
 
 using namespace std;
 
 template<typename T>
-unsigned long long durationFastSort(T &base_vec) // ms
+unsigned long long durationFastSort(T &base_vec)
 {
     auto copy = base_vec;
     auto start = chrono::high_resolution_clock::now();
@@ -57,7 +57,7 @@ int main()
     }
     vector<double> base_double_vec = {};
     for(size_t i; i < 1000000; i++){
-        base_double_vec.push_back(rand()); //for shits and giggles
+        base_double_vec.push_back(rand());
     }
 
     std::cout <<"\n\tvec<int>[1'000'000] fast sort test :\n\n";
@@ -116,7 +116,7 @@ int main()
     }
     vector<double> base_double_vec_bub = {};
     for(size_t i; i < 10000; i++){
-        base_double_vec_bub.push_back(rand()); //for shits and giggles
+        base_double_vec_bub.push_back(rand());
     }
 
     std::cout <<"\n\tvec<int>[10'000] bubble sort test :\n\n";
