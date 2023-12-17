@@ -1,14 +1,9 @@
 #include "MyVector.hpp"
+#define MACRO_VECTOR_TYPE 1
 
-#define MACRO_MYAWFULVECTOR_TYPE 1
-/*
-*
-*   MyAwfulVector types - descrybes vector memory logic
-*   type 0 - allocated just enough memory (memory allocation on every insert/push_back)
-*   type 1 - allocate memory in power of 2 (if v_size == mem_size -> allocate(mem_size * 2))
-*/
+using namespace std;
 
-template< class T> MyAwfulVector<T>::MyAwfulVector( void )
+template<class T> MyVector<T>::MyVector(void)
 {
     this->dataPointer = nullptr;
     this->v_size = 0;
@@ -16,27 +11,26 @@ template< class T> MyAwfulVector<T>::MyAwfulVector( void )
 };
 
 
-template< class T> MyAwfulVector<T>::MyAwfulVector(size_t vecSize)
+template<class T> MyVector<T>::MyVector(size_t vecSize)
 {
     this->dataPointer = new T(vecSize);
     this->v_size = vecSize;
     this->mem_size = 0;
 }
 
-template< class T> T& MyAwfulVector<T>::operator[](size_t index)
+template<class T> T& MyVector<T>::operator[](size_t index)
 {
     return this->dataPointer[index];
 }
 
-template< class T> bool MyAwfulVector<T>::insert(size_t index)
+template<class T> bool MyVector<T>::insert(size_t index)
 {
-    if (index > this->v_size) return false; //fuck this
+    if (index > this->v_size) 
+        return false;
 
 
 
-    #if MACRO_MYAWFULVECTOR_TYPE == 0
-// 0 1 2 3 _
-// 0 1 _ 2 3
+    #if MACRO_VECTOR_TYPE == 0
         T* ndataPointer;
         if (v_size == mem_size)
         {
@@ -66,9 +60,7 @@ template< class T> bool MyAwfulVector<T>::insert(size_t index)
         this->dataPointer = ndataPointer;
         }
 
-    #elif MACRO_MYAWFULVECTOR_TYPE == 1
-        // 0 1 2 3 _
-        // 0 1 _ 2 3
+    #elif MACRO_VECTOR_TYPE == 1
         if (index < this->mem_size)
         {
             for(size_t i = v_size-1; i > index; i--)
@@ -100,30 +92,30 @@ template< class T> bool MyAwfulVector<T>::insert(size_t index)
     return true;
 }
 
-template< class T> bool MyAwfulVector<T>::push_back(T val) //heh
+template< class T> bool MyVector<T>::push_back(T val)
 {
     bool ans =  this->insert(this->v_size);
     if(ans) this->dataPointer[this->v_size-1] = val;
     return ans;
 }
 
-template< class T> bool MyAwfulVector<T>::pop() //got lazy
+template< class T> bool MyVector<T>::pop()
 {
     this->v_size--;
     return true;
 }
 
-template< class T> size_t MyAwfulVector<T>::size()
+template< class T> size_t MyVector<T>::size()
 {
     return this->v_size;
 }
 
-template< class T> size_t MyAwfulVector<T>::_getMemSize()
+template< class T> size_t MyVector<T>::_getMemSize()
 {
     return this->mem_size;
 }
 
-template< class T> bool MyAwfulVector<T>::_memClean() //mem_pop
+template< class T> bool MyVector<T>::_memClean()
 {
     if(v_size == mem_size) return false;
     T* ndataPointer = new T(v_size);
